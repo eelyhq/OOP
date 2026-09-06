@@ -79,13 +79,9 @@ public class HeapSortTest {
 
     @Test
     void hugeRandomArray() {
-        int[] array = new int[1000];
-
         Random random = new Random();
 
-        for (int i = 0; i < 1000; i++) {
-            array[i] = random.nextInt();
-        }
+        int[] array = random.ints(1000, -100_000, 100_000).toArray();
 
         int[] expected = array.clone();
 

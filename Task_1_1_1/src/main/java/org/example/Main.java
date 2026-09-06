@@ -1,17 +1,31 @@
 package org.example;
 
+import java.util.Random;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+        // Complexity proving
+        Random random = new Random();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+        int n1 = 100_000;
+        int[] arrayN1 = random.ints(n1, -100_000, 100_000).toArray();
+
+
+        int n2 = 1_000_000;
+        int[] arrayN2 = random.ints(n2, -100_000, 100_000).toArray();
+
+        long start1 = System.nanoTime();
+        HeapSort.sort(arrayN1);
+        long end1 = System.nanoTime();
+        double time1Ms = (end1 - start1) / 1_000_000.0;
+
+        long start2 = System.nanoTime();
+        HeapSort.sort(arrayN2);
+        long end2 = System.nanoTime();
+        double time2Ms = (end2 - start2) / 1_000_000.0;
+
+        System.out.println(time2Ms / time1Ms);
     }
 }
