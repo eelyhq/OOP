@@ -1,10 +1,14 @@
 package org.example;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.Arrays;
 import java.util.Random;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for validation Heap Sort sorting.
+ */
 public class HeapSortTest {
     @Test
     void testArray() {
@@ -89,5 +93,10 @@ public class HeapSortTest {
         HeapSort.sort(array);
 
         assertArrayEquals(expected, array);
+    }
+
+    @Test
+    void testMain() {
+        Main.main(new String[]{});
     }
 }

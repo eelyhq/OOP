@@ -4,8 +4,15 @@ import java.util.Random;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+/**
+ *  Main class, used for heap sorting complexity proving.
+ */
 public class Main {
-    static void main() {
+    /**
+     * Entry point.
+     */
+    static void main(String[] args) {
         // Complexity proving
         Random random = new Random();
 
