@@ -1,6 +1,7 @@
 package org.example;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -97,6 +98,6 @@ public class HeapSortTest {
 
     @Test
     void testMain() {
-        Main.main(new String[]{});
+        assertDoesNotThrow(() -> Main.main(new String[]{}));
     }
 }

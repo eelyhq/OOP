@@ -11,18 +11,15 @@ public class HeapSort {
     }
 
     private static void siftDown(int[] array, int heapSize, int vertex){
-        int n = heapSize;
 
-        while (2 * vertex + 1 < n) {
+        while (2 * vertex + 1 < heapSize) {
             int l = 2 * vertex + 1;
             int r = 2 * vertex + 2;
 
-            int maxSonIndex = 0;
+            int maxSonIndex = l;
 
-            if (r < n && array[r] > array[l]) {
+            if (r < heapSize && array[r] > array[l]) {
                 maxSonIndex = r;
-            } else {
-                maxSonIndex = l;
             }
 
             if (array[vertex] >= array[maxSonIndex]) {
