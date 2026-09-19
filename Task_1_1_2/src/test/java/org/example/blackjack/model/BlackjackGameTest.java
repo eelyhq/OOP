@@ -77,7 +77,7 @@ class BlackjackGameTest {
         game.dealer.takeCard(new Card(Card.Rank.FIVE, Card.Suit.DIAMONDS));
 
         game.dealersTurn();
-              assertTrue(game.dealer.getScore() >= 17);
+        assertTrue(game.dealer.getScore() >= 17);
     }
 
     @Test

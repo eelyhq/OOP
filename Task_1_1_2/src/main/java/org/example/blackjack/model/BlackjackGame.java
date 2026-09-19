@@ -3,7 +3,7 @@ package org.example.blackjack.model;
 import java.util.Scanner;
 
 /**
- *    Basic game class
+ *    Basic game class.
  */
 public class BlackjackGame {
     Scanner scanner = new Scanner(System.in);
@@ -16,7 +16,7 @@ public class BlackjackGame {
     int dealerScore = 0;
 
     /**
-     *   Constructor, which initialize essense
+     *   Constructor, which initialize essense.
      */
     public BlackjackGame() {
         this.deck = new Deck();
@@ -30,9 +30,11 @@ public class BlackjackGame {
 
     private void printDealerCards(boolean closeCard) {
         if (closeCard) {
-            System.out.println("Карты дилера: [" + dealer.getHand().getCards().get(0) + ", <закрытая карта>]");
+            System.out.println("Карты дилера: [" + dealer.getHand().getCards().get(0)
+                + ", <закрытая карта>]");
         } else {
-            System.out.println("Карты дилера: " + dealer.getHand() + " => " + dealer.getScore());
+            System.out.println("Карты дилера: " + dealer.getHand()
+                + " => " + dealer.getScore());
         }
     }
 
@@ -61,7 +63,8 @@ public class BlackjackGame {
 
     boolean playersTurn() {
         if (player.getScore() == 21) {
-            System.out.print("Блэкджек! Вы выиграли раунд! Счет " + playerScore + ":" + dealerScore);
+            System.out.print("Блэкджек! Вы выиграли раунд! Счет "
+                + playerScore + ":" + dealerScore);
             favorite();
             playerScore++;
             return true;
@@ -85,7 +88,8 @@ public class BlackjackGame {
 
                 if (player.isBusted()) {
                     dealerScore++;
-                    System.out.print("Дилер выиграл раунд, у вас перебор! Счет " + playerScore + ":" + dealerScore);
+                    System.out.print("Дилер выиграл раунд, у вас перебор! Счет "
+                        + playerScore + ":" + dealerScore);
                     favorite();
                     return true;
                 }
@@ -135,13 +139,13 @@ public class BlackjackGame {
 
         boolean roundFinished = playersTurn();
 
-        if (!roundFinished){
+        if (!roundFinished) {
             dealersTurn();
         }
     }
 
     /**
-     *   Method, from which game is starts
+     *   Method, from which game is starts.
      */
     public void start() {
         System.out.println("Добро пожаловать в Блэкджек!");

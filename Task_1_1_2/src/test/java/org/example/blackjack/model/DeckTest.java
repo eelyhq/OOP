@@ -20,5 +20,5 @@ class DeckTest {
         Deck deck = new Deck();
         deck.shuffle();
         assertEquals(52, deck.size());
-       }   
+    }   
 }

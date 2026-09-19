@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *  Class, which determines deck, consisting of 52 cards
+ *  Class, which determines deck, consisting of 52 cards.
  */
 class Deck {
     private List<Card> cards = new ArrayList<>();
 
     /**
-     *  Constructor, which creates 52 cards by combine ranks and suits
+     *  Constructor, which creates 52 cards by combine ranks and suits.
      */
     public Deck() {
         for (Card.Suit suit : Card.Suit.values()) {
@@ -22,21 +22,21 @@ class Deck {
     }
 
     /**
-     *   Method, which shuffle cards in deck
+     *   Method, which shuffle cards in deck.
      */
     public void shuffle() {
         Collections.shuffle(cards);
     }
 
     /**
-     *   Method, which take fierst card from deck and delete it from deck
+     *   Method, which take fierst card from deck and delete it from deck.
      */
     public Card takeCard() {
         return cards.remove(0);
     }
 
     /**
-     *   Method, which shows, how many cards are in deck
+     *   Method, which shows, how many cards are in deck.
      */
     public int size() {
         return cards.size();
