@@ -1,8 +1,8 @@
 package org.example.blackjack.model;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class CardTest {
     @Test 

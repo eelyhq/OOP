@@ -2,9 +2,9 @@ package org.example.blackjack.model;
 
 import java.util.Scanner;
 
-/*
-    Basic game class
-*/
+/**
+ *    Basic game class
+ */
 public class BlackjackGame {
     Scanner scanner = new Scanner(System.in);
     Deck deck;
@@ -15,9 +15,9 @@ public class BlackjackGame {
     int playerScore = 0;
     int dealerScore = 0;
 
-    /*
-        Constructor, which initialize essense
-    */
+    /**
+     *   Constructor, which initialize essense
+     */
     public BlackjackGame() {
         this.deck = new Deck();
         this.player = new Player();
@@ -31,33 +31,29 @@ public class BlackjackGame {
     private void printDealerCards(boolean closeCard) {
         if (closeCard) {
             System.out.println("Карты дилера: [" + dealer.getHand().getCards().get(0) + ", <закрытая карта>]");
-        }
-        else {
+        } else {
             System.out.println("Карты дилера: " + dealer.getHand() + " => " + dealer.getScore());
         }
     }
 
     private void favorite() {
-        if (playerScore > dealerScore){
+        if (playerScore > dealerScore) {
             System.out.println(" в вашу пользу.");
-        }
-        else if (playerScore < dealerScore) {
+        } else if (playerScore < dealerScore) {
             System.out.println(" в пользу дилера.");
         }
     }   
     
     void winCheck() {
-        if (player.getScore() > dealer.getScore() || dealer.isBusted()){
+        if (player.getScore() > dealer.getScore() || dealer.isBusted()) {
             playerScore++;
             System.out.print("Вы выиграли раунд! Счет " + playerScore + ":" + dealerScore);
             favorite();
-        }
-        else if (player.getScore() < dealer.getScore()) {
+        } else if (player.getScore() < dealer.getScore()) {
             dealerScore++;
             System.out.print("Дилер выиграл раунд! Счет " + playerScore + ":" + dealerScore);
             favorite();
-        }
-        else {
+        } else {
             System.out.print("Ничья! Счет " + playerScore + ":" + dealerScore);
             favorite();
         }
@@ -80,8 +76,7 @@ public class BlackjackGame {
 
             if (playerMove == 0) {
                 return false;
-            }
-            else if (playerMove == 1) {
+            } else if (playerMove == 1) {
                 Card card = deck.takeCard();
                 System.out.println("Вы открыли карту " + card.toString());
                 player.takeCard(card);
@@ -94,10 +89,9 @@ public class BlackjackGame {
                     favorite();
                     return true;
                 }
-            }
-            else {
+            } else {
                 System.out.println("Неверная команда");
-            }
+            }   
         }
     }
 
@@ -139,15 +133,15 @@ public class BlackjackGame {
         printPlayerCards();
         printDealerCards(true);
 
-       boolean roundFinished = playersTurn();
+        boolean roundFinished = playersTurn();
 
-       if (!roundFinished){
-           dealersTurn();
-       }
+        if (!roundFinished){
+            dealersTurn();
+        }
     }
 
-    /*
-        Method, from which game is starts
+    /**
+     *   Method, from which game is starts
      */
     public void start() {
         System.out.println("Добро пожаловать в Блэкджек!");

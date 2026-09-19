@@ -1,9 +1,10 @@
 package org.example.blackjack.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BlackjackGameTest {
     private BlackjackGame game;
@@ -44,7 +45,7 @@ class BlackjackGameTest {
     @Test
     public void testWinCheckPlayerBusted() {
         game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES)); 
-        game.player .takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
+        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
         game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
         
         game.dealer.takeCard(new Card(Card.Rank.FIVE, Card.Suit.DIAMONDS));
@@ -59,7 +60,7 @@ class BlackjackGameTest {
     @Test
     public void testDraw() {
         game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES)); 
-        game.player .takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
+        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
         
         game.dealer.takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
         game.dealer.takeCard(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));

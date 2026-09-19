@@ -3,32 +3,32 @@ package org.example.blackjack.model;
 import java.util.List;
 import java.util.ArrayList;
 
-/*
-    Class, which determines essense hand, consists of cards
-*/
+/**
+ *   Class, which determines essense hand, consists of cards
+ */
 class Hand {
     private List<Card> cards = new ArrayList<>();
     private int demotedAces = 0;
 
-    /*
-        Method for adding card to hand from deck
-    */
+    /**
+     *   Method for adding card to hand from deck
+     */
     public void addCard(Card card) { 
         cards.add(card);
     }
 
-    /*
-        Method for clearing hand from cards
-    */
+    /**
+     *   Method for clearing hand from cards
+     */
     public void clear() {
         cards.clear();
         demotedAces = 0;
     }
 
-    /*
-        Method, which calculete sum of points by player's cards in hand. also are taken into account
-        demoted Aces
-    */
+    /**
+     *   Method, which calculete sum of points by player's cards in hand. 
+     *   also are taken into account demoted Aces
+     */
     public int calculatePoints() {
         int points = 0;
         int aceNum = 0;
@@ -49,9 +49,9 @@ class Hand {
         return points;
     }
 
-    /*
-        Method, which return cards in hand
-    */
+    /**
+     *   Method, which return cards in hand
+     */
     public List<Card> getCards() {
         return cards;
     }
@@ -82,9 +82,9 @@ class Hand {
         return sb.toString();
     }
 
-    /*
-        Method, which returns number of cards in hand 
-    */
+    /**
+     *   Method, which returns number of cards in hand 
+     */
     public int size() {
         return cards.size();
     }
