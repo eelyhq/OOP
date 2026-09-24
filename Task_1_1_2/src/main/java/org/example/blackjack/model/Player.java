@@ -4,7 +4,7 @@ package org.example.blackjack.model;
  *   Class, which determines player essense. It has hand with cards and method for communicate hand 
  *   with cards.
  */
-class Player {
+public class Player {
     private Hand hand;
 
     /**
@@ -35,6 +35,13 @@ class Player {
         return getScore() > 21;
     }
 
+    /**
+     *   Method, which returns flag, signifier, that player have blackjack.
+     */
+    public boolean isBlackJack() {
+        return getScore() == 21 && getHand().size() == 2;
+    }
+    
     /**
      *   Method, which clears player's hand from cards.
      */

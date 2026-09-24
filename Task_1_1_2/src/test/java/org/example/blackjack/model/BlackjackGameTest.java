@@ -3,6 +3,7 @@ package org.example.blackjack.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.example.blackjack.BlackjackGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,82 +14,83 @@ class BlackjackGameTest {
     void setUp() {
         game = new BlackjackGame();
     }
-    
+
     @Test
     public void testWinCheckPlayerWins() {
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES));
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES));
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
 
-        game.dealer.takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
-        game.dealer.takeCard(new Card(Card.Rank.SEVEN, Card.Suit.DIAMONDS));
+        game.getDealer().takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
+        game.getDealer().takeCard(new Card(Card.Rank.SEVEN, Card.Suit.DIAMONDS));
 
         game.winCheck();
 
-        assertEquals(1, game.playerScore);
-        assertEquals(0, game.dealerScore);
+        assertEquals(1, game.getPlayerScore());
+        assertEquals(0, game.getDealerScore());
     }
-    
+
     @Test
     public void testWinCheckDealerBusted() {
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES)); 
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES));
 
-        game.dealer.takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
-        game.dealer.takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
-        game.dealer.takeCard(new Card(Card.Rank.FIVE, Card.Suit.DIAMONDS));
+        game.getDealer().takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
+        game.getDealer().takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
+        game.getDealer().takeCard(new Card(Card.Rank.FIVE, Card.Suit.DIAMONDS));
 
         game.winCheck();
 
-        assertEquals(1, game.playerScore);
-        assertEquals(0, game.dealerScore);
-    }   
+        assertEquals(1, game.getPlayerScore());
+        assertEquals(0, game.getDealerScore());
+    }
 
     @Test
     public void testWinCheckPlayerBusted() {
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES)); 
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
-        
-        game.dealer.takeCard(new Card(Card.Rank.FIVE, Card.Suit.DIAMONDS));
-        game.dealer.takeCard(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));
-        
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES));
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
+
+        game.getDealer().takeCard(new Card(Card.Rank.FIVE, Card.Suit.DIAMONDS));
+        game.getDealer().takeCard(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));
+
         game.winCheck();
 
-        assertEquals(1, game.playerScore);
-        assertEquals(0, game.dealerScore);
-    } 
-    
+        assertEquals(0, game.getPlayerScore());
+        assertEquals(1, game.getDealerScore());
+    }
+
     @Test
     public void testDraw() {
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES)); 
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
-        
-        game.dealer.takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
-        game.dealer.takeCard(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));
-        
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.SPADES));
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.CLUBS));
+
+        game.getDealer().takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
+        game.getDealer().takeCard(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));
+
         game.winCheck();
 
-        assertEquals(0, game.playerScore);
-        assertEquals(0, game.dealerScore);
-    } 
-    
-    @Test 
+        assertEquals(0, game.getPlayerScore());
+        assertEquals(0, game.getDealerScore());
+    }
+
+    @Test
     public void testCheckDealerHittingLogic() {
-        game.dealer.takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
-        game.dealer.takeCard(new Card(Card.Rank.FIVE, Card.Suit.DIAMONDS));
+        game.getDealer().takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
+        game.getDealer().takeCard(new Card(Card.Rank.FIVE, Card.Suit.DIAMONDS));
 
         game.dealersTurn();
-        assertTrue(game.dealer.getScore() >= 17);
+        assertTrue(game.getDealer().getScore() >= 17);
     }
 
     @Test
     public void testPlayersTurnInstantBlackjack() {
         BlackjackGame game = new BlackjackGame();
-        game.player.takeCard(new Card(Card.Rank.ACE, Card.Suit.SPADES));
-        game.player.takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
+        game.getPlayer().takeCard(new Card(Card.Rank.ACE, Card.Suit.SPADES));
+        game.getPlayer().takeCard(new Card(Card.Rank.TEN, Card.Suit.HEARTS));
 
         boolean roundFinished = game.playersTurn();
 
+        assertTrue(game.getPlayer().isBlackJack());
         assertTrue(roundFinished);
-        assertEquals(1, game.playerScore);
+        assertEquals(1, game.getPlayerScore());
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  *  Class, which determines deck, consisting of 52 cards.
  */
-class Deck {
+public class Deck {
     private List<Card> cards = new ArrayList<>();
 
     /**

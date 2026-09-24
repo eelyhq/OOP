@@ -1,19 +1,25 @@
-package org.example.blackjack.model;
+package org.example.blackjack;
 
 import java.util.Scanner;
+
+import org.example.blackjack.model.Card;
+import org.example.blackjack.model.Dealer;
+import org.example.blackjack.model.Deck;
+import org.example.blackjack.model.Player;
 
 /**
  *    Basic game class.
  */
 public class BlackjackGame {
-    Scanner scanner = new Scanner(System.in);
-    Deck deck;
-    Player player;
-    Dealer dealer;
+    private final Scanner scanner = new Scanner(System.in);
+    private final Player player;
+    private final Dealer dealer;
+   
     private int roundNum = 1;
-
-    int playerScore = 0;
-    int dealerScore = 0;
+    private int playerScore = 0;
+    private int dealerScore = 0;
+    
+    private Deck deck;
 
     /**
      *   Constructor, which initialize essense.
@@ -46,8 +52,12 @@ public class BlackjackGame {
         }
     }   
     
-    void winCheck() {
-        if (player.getScore() > dealer.getScore() || dealer.isBusted()) {
+    public void winCheck() {
+        if (player.isBusted()) {
+            dealerScore++;
+            System.out.print("Дилер выиграл раунд, у вас перебор! Счет " + playerScore + ":" + dealerScore);
+            favorite();
+        } else if (player.getScore() > dealer.getScore() || dealer.isBusted()) {
             playerScore++;
             System.out.print("Вы выиграли раунд! Счет " + playerScore + ":" + dealerScore);
             favorite();
@@ -61,12 +71,12 @@ public class BlackjackGame {
         }
     }
 
-    boolean playersTurn() {
-        if (player.getScore() == 21) {
+    public boolean playersTurn() {
+        if (player.isBlackJack()) {
+            playerScore++;
             System.out.print("Блэкджек! Вы выиграли раунд! Счет "
                 + playerScore + ":" + dealerScore);
             favorite();
-            playerScore++;
             return true;
         }
         
@@ -99,7 +109,7 @@ public class BlackjackGame {
         }
     }
 
-    void dealersTurn() {
+    public void dealersTurn() {
         System.out.println("\nХод дилера");
         System.out.println("-------");
 
@@ -137,6 +147,27 @@ public class BlackjackGame {
         printPlayerCards();
         printDealerCards(true);
 
+        if (player.isBlackJack() || dealer.isBlackJack()) {
+            printPlayerCards();
+            printDealerCards(false);
+            if (player.isBlackJack() && dealer.isBlackJack()) {
+                System.out.println("У вас и у дилера блэкджек! Счет "
+                    + playerScore + ":" + dealerScore);
+            }
+            else if (player.isBlackJack()) {
+                playerScore++;
+                System.out.println("У вас блэкджек! Счет "
+                    + playerScore + ":" + dealerScore);
+            }
+            else {
+                dealerScore++;
+                System.out.println("У дилера блэкджек! Счет "
+                    + playerScore + ":" + dealerScore);
+            }
+            favorite();
+            return;
+        }
+        
         boolean roundFinished = playersTurn();
 
         if (!roundFinished) {
@@ -154,8 +185,29 @@ public class BlackjackGame {
             System.out.println("\n\nРаунд " + roundNum);
 
             playRound();
+            System.out.println("\nХотите сыграть еще раунд? (1 - да, 0 - выход)");
+            int choice = scanner.nextInt();
+            if (choice == 0) {
+                System.out.println("Спасибо за игру! Итоговый счет — Вы: " + playerScore + " | Дилер: " + dealerScore);
+                break;
+            }
 
             roundNum++;
         }
+    }
+    public Player getPlayer() {
+        return player;
+    }
+    
+    public Dealer getDealer() {
+        return dealer;
+    }
+    
+    public int getPlayerScore() {
+        return playerScore;
+    }
+    
+    public int getDealerScore() {
+        return dealerScore;
     }
 }

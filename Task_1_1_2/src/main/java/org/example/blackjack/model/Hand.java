@@ -1,12 +1,13 @@
 package org.example.blackjack.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  *   Class, which determines essense hand, consists of cards.
  */
-class Hand {
+public class Hand {
     private List<Card> cards = new ArrayList<>();
     private int demotedAces = 0;
 
@@ -53,7 +54,7 @@ class Hand {
      *   Method, which return cards in hand.
      */
     public List<Card> getCards() {
-        return cards;
+        return  Collections.unmodifiableList(cards);
     }
 
     @Override
