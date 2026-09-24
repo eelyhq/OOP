@@ -134,4 +134,21 @@ class BlackjackGameTest {
         boolean roundFinished = testGame.playersTurn();
         org.junit.jupiter.api.Assertions.assertFalse(roundFinished);
     }
+
+    @Test
+    public void testPlayersTurnHitAndBust() {
+        System.setIn(new ByteArrayInputStream("1\n".getBytes()));
+        BlackjackGame testGame = new BlackjackGame();
+
+        testGame.getPlayer().takeCard(new Card(Card.Rank.SEVEN, Card.Suit.SPADES));
+        testGame.getPlayer().takeCard(new Card(Card.Rank.SEVEN, Card.Suit.HEARTS));
+        testGame.getPlayer().takeCard(new Card(Card.Rank.SEVEN, Card.Suit.CLUBS));
+
+        testGame.getDealer().takeCard(new Card(Card.Rank.TEN, Card.Suit.DIAMONDS));
+
+        boolean roundFinished = testGame.playersTurn();
+
+        assertTrue(roundFinished);
+        assertEquals(1, testGame.getDealerScore());
+    }
 }
