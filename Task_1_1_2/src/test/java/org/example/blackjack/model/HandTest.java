@@ -63,13 +63,12 @@ class HandTest {
     }
 
     @Test
-        public void testToStringWithDemotedAce() {
-            Hand hand = new Hand();
-            hand.addCard(new Card(Card.Rank.TEN, Card.Suit.SPADES));
-            hand.addCard(new Card(Card.Rank.NINE, Card.Suit.HEARTS));
-            hand.addCard(new Card(Card.Rank.ACE, Card.Suit.CLUBS));
+    public void testToStringWithDemotedAce() {
+        Hand hand = new Hand();
+        hand.addCard(new Card(Card.Rank.TEN, Card.Suit.SPADES));
+        hand.addCard(new Card(Card.Rank.NINE, Card.Suit.HEARTS));
+        hand.addCard(new Card(Card.Rank.ACE, Card.Suit.CLUBS));
     
-            assertEquals("[десятка пики (10), девятка черви (9), туз крести (1)]", hand.toString());
-        }
-    
+        assertEquals("[десятка пики (10), девятка черви (9), туз крести (1)]", hand.toString());
+    }  
 }

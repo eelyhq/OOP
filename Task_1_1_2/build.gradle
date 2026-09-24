@@ -34,3 +34,24 @@ jacocoTestReport {
         xml.required = true
     }
 }
+
+def jacocoExcludes = [
+    '**/Main.class',
+    '**/Main$*.class'
+]
+
+jacocoTestReport {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExcludes)
+        }))
+    }
+}
+
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExcludes)
+        }))
+    }
+}
