@@ -24,3 +24,9 @@ test {
 application {
     mainClass = 'org.example.Main' 
 }
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
