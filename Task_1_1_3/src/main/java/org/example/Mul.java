@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Multiplication expression.
+ */
 public class Mul extends BinaryOperator {
     public Mul(Expression left, Expression right) {
         super(left, right);
@@ -7,7 +10,8 @@ public class Mul extends BinaryOperator {
     
     @Override
     public Expression derivative(String var) {
-        return new Add(new Mul(this.left.derivative(var), this.right), new Mul(this.left, this.right.derivative(var)));
+        return new Add(new Mul(this.left.derivative(var), this.right),
+            new Mul(this.left, this.right.derivative(var)));
     }
     
     @Override

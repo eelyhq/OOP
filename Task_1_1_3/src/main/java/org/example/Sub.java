@@ -1,5 +1,6 @@
 package org.example;
 
+/** Subtraction operation. */
 public class Sub extends BinaryOperator {
     public Sub(Expression left, Expression right) {
         super(left, right);

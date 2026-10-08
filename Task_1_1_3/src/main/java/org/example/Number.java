@@ -1,6 +1,9 @@
 package org.example;
 
-public class Number extends Expression{
+/**
+ * Numeric constant expression.
+ */
+public class Number extends Expression {
     private int value;
 
     public void setNumber(int value) {

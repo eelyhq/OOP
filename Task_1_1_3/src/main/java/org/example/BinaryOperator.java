@@ -1,5 +1,6 @@
 package org.example;
 
+/** Abstract binary operator with left and right operands. */
 public abstract class BinaryOperator extends Expression {
     protected Expression left;
     protected Expression right;

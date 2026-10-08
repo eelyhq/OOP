@@ -1,6 +1,12 @@
 package org.example;
 
+/**
+ * Parser for mathematical expressions.
+ */
 public class Parser {
+    /**
+     * Parses an expression from a string.
+     */
     public static Expression parse(String s) {
         s = s.replaceAll("\\s+", "");
 

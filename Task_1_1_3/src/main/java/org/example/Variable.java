@@ -1,5 +1,6 @@
 package org.example;
 
+/** Variable expression. */
 public class Variable extends Expression {
     private String name;
 

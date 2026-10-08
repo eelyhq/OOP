@@ -1,5 +1,6 @@
 package org.example;
 
+/** Addition operation. */
 public class Add extends BinaryOperator {
 
     public Add(Expression left, Expression right) {

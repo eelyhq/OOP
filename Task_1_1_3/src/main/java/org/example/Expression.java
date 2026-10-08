@@ -1,5 +1,6 @@
 package org.example;
 
+/** Base class for mathematical expressions. */
 public abstract class Expression {
     
     public void print() {
