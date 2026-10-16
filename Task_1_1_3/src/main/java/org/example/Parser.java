@@ -32,8 +32,12 @@ public class Parser {
                 break; 
             }
         }
+        if (opIndex == -1) {
+            throw new IllegalArgumentException("No valid operator found in expression: " + s);
+        }
+        
         char operator = s.charAt(opIndex);
-
+        
         String leftStr = s.substring(1, opIndex); 
 
         String rightStr = s.substring(opIndex + 1, s.length() - 1);
@@ -41,17 +45,12 @@ public class Parser {
         Expression left = parse(leftStr);
         Expression right = parse(rightStr);
 
-        switch(operator) {
-            case '+':
-                return new Add(left, right);
-            case '-':
-                return new Sub(left, right);
-            case '*':
-                return new Mul(left, right);
-            case '/':
-                return new Div(left, right);
-            default:
-                 throw new IllegalArgumentException("Unknown operator: " + operator);
-        }
+        return switch(operator) {
+            case '+' -> new Add(left, right);
+            case '-' -> new Sub(left, right);
+            case '*' -> new Mul(left, right);
+            case '/' -> new Div(left, right);
+            default -> throw new IllegalArgumentException("Unknown operator: " + operator);
+        };
     }   
 }

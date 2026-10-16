@@ -4,18 +4,14 @@ package org.example;
  * Numeric constant expression.
  */
 public class Number extends Expression {
-    private int value;
+    private final int value;
 
-    public void setNumber(int value) {
+    public Number(int value) {
         this.value = value;
     }
 
     public int getNumber() {
         return this.value; 
-    } 
-
-    public Number(int value) {
-        setNumber(value);
     }
 
     @Override

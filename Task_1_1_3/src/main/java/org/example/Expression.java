@@ -4,7 +4,7 @@ package org.example;
 public abstract class Expression {
     
     public void print() {
-        System.out.println(this.toString());
+        System.out.println(this);
     } 
     
     public abstract Expression derivative(String var);

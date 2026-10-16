@@ -2,18 +2,14 @@ package org.example;
 
 /** Variable expression. */
 public class Variable extends Expression {
-    private String name;
+    private final String name;
 
-    public void setName(String name) {
+    public Variable(String name) {
         this.name = name;
     }
 
     public String getName() {
         return this.name;
-    }
-
-    public Variable(String name) {
-        setName(name);
     }
 
     @Override
