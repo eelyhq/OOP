@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+/**
+ * Kahn's algorithm for topological sorting.
+ *
+ * @param <V> the vertex type
+ */
 public class KanhTopologicalSort<V> implements TopologicalSorter<V> {
     @Override 
     public List<V> sort(Graph<V> graph) {
@@ -22,7 +27,7 @@ public class KanhTopologicalSort<V> implements TopologicalSorter<V> {
 
         for (V u : graph.getVertices()) {
             for (V v : graph.getAdjacentVertices(u)) {
-                inDegree.put(v, inDegree.get(v) + 1);
+                inDegree.put(v, inDegree.getOrDefault(v, 0) + 1);
             }
         }
 

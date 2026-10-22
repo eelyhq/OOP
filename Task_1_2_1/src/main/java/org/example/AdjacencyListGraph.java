@@ -8,6 +8,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
+/**
+ * Graph implementation using adjacency lists.
+ *
+ * @param <V> the vertex type
+ */
 public class AdjacencyListGraph<V> extends AbstractGraph<V> {
     private final Map<V, Set<V>> adjacencyMap = new HashMap<>();
 

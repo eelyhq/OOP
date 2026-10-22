@@ -11,6 +11,11 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 
+/**
+ * Abstract base class implementing common Graph operations.
+ *
+ * @param <V> the vertex type
+ */
 public abstract class AbstractGraph<V> implements Graph<V> {
     private final Function<String, V> defaultVertexParser;
 
@@ -72,8 +77,12 @@ public abstract class AbstractGraph<V> implements Graph<V> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Graph<?> otherGraph)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Graph<?> otherGraph)) {
+            return false;
+        }
 
         List<V> thisVertices = this.getVertices();
         List<?> otherVertices = otherGraph.getVertices();

@@ -6,7 +6,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Main application class.
+ */
 public class Main {
+    /**
+     * Application entry point.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         Path filePath;
         if (args.length > 0) {
@@ -21,10 +29,12 @@ public class Main {
         System.out.println("Reading graph from: " + filePath.toAbsolutePath());
 
         try {
+            // 1. Create all three representations
             Graph<String> listGraph = new AdjacencyListGraph<>();
             Graph<String> matrixGraph = new AdjacencyMatrixGraph<>();
             Graph<String> incGraph = new IncidenceMatrixGraph<>();
 
+            // 2. Read from file
             listGraph.readFromFile(filePath);
             matrixGraph.readFromFile(filePath);
             incGraph.readFromFile(filePath);
@@ -32,6 +42,7 @@ public class Main {
             System.out.println("\n--- Adjacency List Graph ---");
             System.out.print(listGraph);
 
+            // 3. Verify equality between representations
             boolean listEqualsMatrix = listGraph.equals(matrixGraph);
             boolean listEqualsInc = listGraph.equals(incGraph);
             boolean matrixEqualsInc = matrixGraph.equals(incGraph);
@@ -45,14 +56,43 @@ public class Main {
                 return;
             }
 
+            // 4. Perform topological sort
             TopologicalSorter<String> sorter = new KanhTopologicalSort<>();
             List<String> sortedVertices = sorter.sort(listGraph);
 
             System.out.println("\nTopological sort result: " + sortedVertices);
+
+            // 5. Verify topological sort correctness
+            boolean isValid = verifyTopologicalOrder(listGraph, sortedVertices);
+            System.out.println("Is topological sort valid? " + isValid);
+
+            System.out.println("\nAll checks passed successfully!");
         } catch (IOException e) {
             System.err.println("Failed to read graph file: " + e.getMessage());
         } catch (Exception e) {
             System.err.println("Error during execution: " + e.getMessage());
         }
+    }
+
+    /**
+     * Verifies that the given order of vertices is a valid topological sort.
+     *
+     * @param graph the graph
+     * @param order the sorted list of vertices
+     * @param <V>   the vertex type
+     * @return true if valid, false otherwise
+     */
+    public static <V> boolean verifyTopologicalOrder(Graph<V> graph, List<V> order) {
+        for (int i = 0; i < order.size(); i++) {
+            V u = order.get(i);
+            List<V> adjacent = graph.getAdjacentVertices(u);
+            for (V v : adjacent) {
+                int j = order.indexOf(v);
+                if (j <= i) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

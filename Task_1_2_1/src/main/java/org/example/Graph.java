@@ -5,6 +5,11 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Function;
 
+/**
+ * Graph interface representing a directed graph.
+ *
+ * @param <V> the vertex type
+ */
 public interface Graph<V> {
     boolean addVertex(V vertex);
 

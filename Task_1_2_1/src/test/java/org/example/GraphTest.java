@@ -1,21 +1,23 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Tests for Graph implementations and Topological sort.
+ */
 class GraphTest {
 
     private void checkGraphOperations(Graph<String> graph) {
+        // Добавление вершин
         assertTrue(graph.addVertex("A"));
         assertTrue(graph.addVertex("B"));
         assertTrue(graph.addVertex("C"));
@@ -24,6 +26,7 @@ class GraphTest {
         assertTrue(graph.containsVertex("A"));
         assertFalse(graph.containsVertex("D"));
 
+        // Добавление ребер
         assertTrue(graph.addEdge("A", "B"));
         assertTrue(graph.addEdge("A", "C"));
         assertFalse(graph.addEdge("A", "B"));
@@ -31,16 +34,19 @@ class GraphTest {
         assertTrue(graph.containsEdge("A", "B"));
         assertFalse(graph.containsEdge("B", "A"));
 
+        // Получение вершин и смежных
         assertEquals(3, graph.getVertices().size());
         List<String> adj = graph.getAdjacentVertices("A");
         assertEquals(2, adj.size());
         assertTrue(adj.contains("B") && adj.contains("C"));
         assertThrows(IllegalArgumentException.class, () -> graph.getAdjacentVertices("Unknown"));
 
+        // Удаление ребра
         assertTrue(graph.removeEdge("A", "B"));
         assertFalse(graph.containsEdge("A", "B"));
         assertFalse(graph.removeEdge("A", "B"));
 
+        // Удаление вершины
         assertTrue(graph.removeVertex("C"));
         assertFalse(graph.containsVertex("C"));
         assertFalse(graph.containsEdge("A", "C"));
@@ -114,6 +120,7 @@ class GraphTest {
         TopologicalSorter<String> sorter = new KanhTopologicalSort<>();
         List<String> sorted = sorter.sort(graph);
         assertEquals(List.of("A", "B", "C"), sorted);
+        assertTrue(Main.verifyTopologicalOrder(graph, sorted));
     }
 
     @Test

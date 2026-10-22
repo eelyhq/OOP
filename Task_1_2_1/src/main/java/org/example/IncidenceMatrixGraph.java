@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Graph implementation using an incidence matrix.
+ *
+ * @param <V> the vertex type
+ */
 public class IncidenceMatrixGraph<V> extends AbstractGraph<V> {
     private final Map<V, Integer> vertexToIndex = new HashMap<>();
     private final List<V> indexToVertex = new ArrayList<>();
