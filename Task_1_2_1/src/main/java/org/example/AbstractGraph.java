@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -163,5 +164,25 @@ public abstract class AbstractGraph<V> implements Graph<V> {
         }
         sb.append("}\n");
         return sb.toString();
+    }
+    
+    @Override 
+    public List<Edge<V>> getEdges() {
+        List<Edge<V>> edges = new ArrayList<>();
+        List<V> vertices = getVertices();
+        if (vertices == null) {
+            return edges;
+        }
+        
+        for (V vertex : vertices) {
+            List<V> adjacentVertices = getAdjacentVertices(vertex);
+            if (adjacentVertices != null) {
+                for (V adjacentVertex : adjacentVertices) {
+                    edges.add(new Edge<>(vertex, adjacentVertex));
+                }
+            }
+        }
+
+        return edges;
     }
 }

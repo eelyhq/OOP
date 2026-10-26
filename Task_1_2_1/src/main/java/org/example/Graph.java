@@ -27,6 +27,8 @@ public interface Graph<V> {
 
     boolean containsEdge(V from, V to);
 
+    List<Edge<V>> getEdges();
+
     void readFromFile(Path path) throws IOException;
 
     void readFromFile(Path path, Function<String, V> vertexParser) throws IOException;

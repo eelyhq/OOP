@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +90,7 @@ public class IncidenceMatrixGraph<V> extends AbstractGraph<V> {
     @Override
     public List<V> getAdjacentVertices(V vertex) {
         if (!containsVertex(vertex)) {
-            throw new IllegalArgumentException("Vertex doesn't exist in graph: " + vertex);
+            return Collections.emptyList();
         }
 
         int vertexRow = vertexToIndex.get(vertex);

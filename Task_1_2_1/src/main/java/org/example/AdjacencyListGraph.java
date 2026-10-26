@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -60,7 +61,7 @@ public class AdjacencyListGraph<V> extends AbstractGraph<V> {
     @Override
     public List<V> getAdjacentVertices(V vertex) {
         if (!containsVertex(vertex)) {
-            throw new IllegalArgumentException("Vertex doesn't exist in graph: " + vertex);
+            return Collections.emptyList();
         } 
 
         return new ArrayList<>(adjacencyMap.get(vertex));
@@ -89,4 +90,6 @@ public class AdjacencyListGraph<V> extends AbstractGraph<V> {
         }  
         return adjacencyMap.get(from).contains(to);
     }
+
+
 }

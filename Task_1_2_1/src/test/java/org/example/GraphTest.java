@@ -34,12 +34,18 @@ class GraphTest {
         assertTrue(graph.containsEdge("A", "B"));
         assertFalse(graph.containsEdge("B", "A"));
 
+        // Получение ребер
+        List<Edge<String>> edges = graph.getEdges();
+        assertEquals(2, edges.size());
+        assertTrue(edges.contains(new Edge<>("A", "B")));
+        assertTrue(edges.contains(new Edge<>("A", "C")));
+
         // Получение вершин и смежных
         assertEquals(3, graph.getVertices().size());
         List<String> adj = graph.getAdjacentVertices("A");
         assertEquals(2, adj.size());
         assertTrue(adj.contains("B") && adj.contains("C"));
-        assertThrows(IllegalArgumentException.class, () -> graph.getAdjacentVertices("Unknown"));
+        assertTrue(graph.getAdjacentVertices("Unknown").isEmpty());
 
         // Удаление ребра
         assertTrue(graph.removeEdge("A", "B"));
@@ -120,7 +126,7 @@ class GraphTest {
         TopologicalSorter<String> sorter = new KanhTopologicalSort<>();
         List<String> sorted = sorter.sort(graph);
         assertEquals(List.of("A", "B", "C"), sorted);
-        assertTrue(Main.verifyTopologicalOrder(graph, sorted));
+        assertTrue(TopologicalSorter.verifyTopologicalOrder(graph, sorted));
     }
 
     @Test

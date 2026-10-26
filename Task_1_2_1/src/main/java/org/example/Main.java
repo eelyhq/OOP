@@ -63,7 +63,7 @@ public class Main {
             System.out.println("\nTopological sort result: " + sortedVertices);
 
             // 5. Verify topological sort correctness
-            boolean isValid = verifyTopologicalOrder(listGraph, sortedVertices);
+            boolean isValid = TopologicalSorter.verifyTopologicalOrder(listGraph, sortedVertices);
             System.out.println("Is topological sort valid? " + isValid);
 
             System.out.println("\nAll checks passed successfully!");
@@ -72,27 +72,5 @@ public class Main {
         } catch (Exception e) {
             System.err.println("Error during execution: " + e.getMessage());
         }
-    }
-
-    /**
-     * Verifies that the given order of vertices is a valid topological sort.
-     *
-     * @param graph the graph
-     * @param order the sorted list of vertices
-     * @param <V>   the vertex type
-     * @return true if valid, false otherwise
-     */
-    public static <V> boolean verifyTopologicalOrder(Graph<V> graph, List<V> order) {
-        for (int i = 0; i < order.size(); i++) {
-            V u = order.get(i);
-            List<V> adjacent = graph.getAdjacentVertices(u);
-            for (V v : adjacent) {
-                int j = order.indexOf(v);
-                if (j <= i) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
