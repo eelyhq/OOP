@@ -1,0 +1,11 @@
+# Directed Graph representation
+# Format:
+# "from to" for edges
+# "vertex" for isolated vertices
+
+A B
+A C
+B D
+C D
+D E
+F
