@@ -64,4 +64,9 @@ jacocoTestReport {
         xml.outputLocation = file("${rootDir}/build/reports/jacoco/test/jacocoTestReport.xml")
         html.required = true
     }
+
+javadoc {
+    destinationDir = file("${rootDir}/build/docs/javadoc")
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
 }
