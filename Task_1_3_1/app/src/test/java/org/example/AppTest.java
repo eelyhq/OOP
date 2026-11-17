@@ -141,4 +141,14 @@ class AppTest {
                 IOException.class,
                 () -> SubstringFinder.finder(tempDir.resolve("missing.txt"), "а"));
     }
+
+    /** Test for CLI entry point. */
+    @Test
+    void testAppMain(@TempDir Path tempDir) throws IOException {
+        Path path = tempDir.resolve("file.txt");
+        Files.writeString(path, "абракадабра");
+
+        App.main(new String[] {path.toString(), "бра"});
+        App.main(new String[] {tempDir.resolve("missing.txt").toString(), "бра"});
+    }
 }
