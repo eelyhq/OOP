@@ -61,6 +61,7 @@ jacocoTestReport {
     dependsOn test
     reports {
         xml.required = true
+        xml.outputLocation = file("${rootDir}/build/reports/jacoco/test/jacocoTestReport.xml")
         html.required = true
     }
 }
